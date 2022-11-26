@@ -28,8 +28,7 @@ public class PlanSponsor {
     @Column(updatable = true, nullable = false)
     private Timestamp updatedDate;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name= "planSponsorId")
+    @OneToOne(mappedBy = "planSponsor", fetch = FetchType.LAZY)
     private RelationshipTreeNode relationshipTreeNode;
 
 }

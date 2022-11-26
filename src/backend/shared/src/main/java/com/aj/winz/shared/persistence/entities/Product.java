@@ -29,8 +29,7 @@ public class Product {
     @Column(updatable = true, nullable = false)
     private Timestamp updatedDate;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name= "productId")
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<RelationshipTreeNode> relationshipTreeNodeList;
 
 }

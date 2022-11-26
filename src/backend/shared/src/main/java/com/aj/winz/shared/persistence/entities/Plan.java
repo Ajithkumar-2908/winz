@@ -30,8 +30,7 @@ public class Plan {
     @Column(updatable = true, nullable = false)
     private Timestamp updatedDate;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name= "planId")
+    @OneToMany(mappedBy = "plan", fetch = FetchType.LAZY)
     private List<RelationshipTreeNode> relationshipTreeNodeList;
 
 

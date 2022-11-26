@@ -1,7 +1,9 @@
 package com.aj.winz.controllers.v1;
 
 import com.aj.winz.shared.persistence.entities.PlanSponsor;
+import com.aj.winz.shared.persistence.entities.RelationshipTreeNode;
 import com.aj.winz.shared.persistence.repositories.PlanSponsorRepository;
+import com.aj.winz.shared.persistence.repositories.RelationShipTreeNodeRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +16,11 @@ import java.util.List;
 public class PlanSponsorController {
 
     private final PlanSponsorRepository planSponsorRepository;
-    public PlanSponsorController(PlanSponsorRepository planSponsorRepository) {
+    private final RelationShipTreeNodeRepository relationShipTreeNodeRepository;
+    public PlanSponsorController(PlanSponsorRepository planSponsorRepository,
+                                 RelationShipTreeNodeRepository relationShipTreeNodeRepository) {
         this.planSponsorRepository = planSponsorRepository;
+        this.relationShipTreeNodeRepository = relationShipTreeNodeRepository;
     }
 
     @GetMapping
@@ -26,6 +31,17 @@ public class PlanSponsorController {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(planSponsors);
+        }
+    }
+
+    @GetMapping("relationShipTreeNode")
+    public ResponseEntity<Page<RelationshipTreeNode>> getAllRelationshipTreeNodes(@RequestParam(required = false, defaultValue = "1")  int pageNo, @RequestParam(required = false, defaultValue = "10") int pageSize) {
+        var page = PageRequest.of(pageNo, pageSize);
+        var treeNodes = relationShipTreeNodeRepository.findAll(page);
+        if (treeNodes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(treeNodes);
         }
     }
 }

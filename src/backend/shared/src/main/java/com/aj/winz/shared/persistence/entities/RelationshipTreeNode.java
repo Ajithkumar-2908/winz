@@ -22,15 +22,15 @@ public class RelationshipTreeNode {
     private int level;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "planSponsorId")
     private PlanSponsor planSponsor;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "planId")
     private Plan plan;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "productId")
     private Product product;
 
 }
