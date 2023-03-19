@@ -24,9 +24,9 @@ public class PlanSponsorController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PlanSponsor>> getAllPlanSponsors(@RequestParam(required = false, defaultValue = "1")  int pageNo, @RequestParam(required = false, defaultValue = "10") int pageSize) {
+    public ResponseEntity<List<PlanSponsor>> getAllPlanSponsors(@RequestParam(required = false, defaultValue = "1")  int pageNo, @RequestParam(required = false, defaultValue = "10") int pageSize) {
         var page = PageRequest.of(pageNo, pageSize);
-        var planSponsors = planSponsorRepository.findAll(page);
+        var planSponsors = planSponsorRepository.findAll();
         if (planSponsors.isEmpty()) {
             return ResponseEntity.notFound().build();
         } else {
@@ -35,9 +35,9 @@ public class PlanSponsorController {
     }
 
     @GetMapping("relationShipTreeNode")
-    public ResponseEntity<Page<RelationshipTreeNode>> getAllRelationshipTreeNodes(@RequestParam(required = false, defaultValue = "1")  int pageNo, @RequestParam(required = false, defaultValue = "10") int pageSize) {
+    public ResponseEntity<List<RelationshipTreeNode>> getAllRelationshipTreeNodes(@RequestParam(required = false, defaultValue = "1")  int pageNo, @RequestParam(required = false, defaultValue = "10") int pageSize) {
         var page = PageRequest.of(pageNo, pageSize);
-        var treeNodes = relationShipTreeNodeRepository.findAll(page);
+        var treeNodes = relationShipTreeNodeRepository.findAll();
         if (treeNodes.isEmpty()) {
             return ResponseEntity.notFound().build();
         } else {

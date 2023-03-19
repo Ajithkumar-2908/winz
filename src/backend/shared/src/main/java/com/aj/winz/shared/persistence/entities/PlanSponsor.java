@@ -1,5 +1,8 @@
 package com.aj.winz.shared.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -29,6 +32,8 @@ public class PlanSponsor {
     private Timestamp updatedDate;
 
     @OneToOne(mappedBy = "planSponsor", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @JsonIgnore
     private RelationshipTreeNode relationshipTreeNode;
 
 }

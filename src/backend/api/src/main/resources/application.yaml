@@ -8,11 +8,12 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.SQLServer2012Dialect
+        globally_quoted_identifiers: true
   flyway:
     baseline-on-migrate: true
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost:1433;database=winz;user=sa;password=vT5jI98#dvgty;trustServerCertificate=true;
+    url: jdbc:sqlserver://localhost:1433;database=winz;user=sa;password=y^#2mkjh(lVF;trustServerCertificate=true;
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 100
